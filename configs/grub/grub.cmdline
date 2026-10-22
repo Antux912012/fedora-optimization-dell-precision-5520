@@ -1,0 +1,25 @@
+# Recommended GRUB_CMDLINE_LINUX additions for Dell Precision 5520 / XPS 15 9560
+#
+# Location: /etc/default/grub -> GRUB_CMDLINE_LINUX="..."
+# After updating, regenerate grub config with:
+#   sudo grub2-mkconfig -o /boot/grub2/grub.cfg
+
+# 1. Eliminate open-source Nouveau drivers cleanly for NVIDIA proprietary driver:
+# rd.driver.blacklist=nouveau,nova_core modprobe.blacklist=nouveau,nova_core
+
+# 2. Disable split-lock detection penalty (avoids performance drops in multithreaded workloads & gaming):
+# split_lock_detect=off
+
+# 3. Disable hardware watchdog & NMI watchdog interrupts (saves power and eliminates latency spikes):
+# nowatchdog nmi_watchdog=0
+
+# 4. Maximize PCIe bus performance:
+# pci=pcie_bus_perf
+
+# 5. Prevent premature USB autosuspend (fixes audio interface dropouts & wireless mouse sleep lag):
+# usbcore.autosuspend=-1
+
+# 6. Enable page allocation shuffling (enhances memory bus throughput and mitigates cache side-channels):
+# page_alloc.shuffle=1
+
+GRUB_CMDLINE_LINUX="rhgb quiet rd.driver.blacklist=nouveau,nova_core modprobe.blacklist=nouveau,nova_core split_lock_detect=off nowatchdog nmi_watchdog=0 pci=pcie_bus_perf usbcore.autosuspend=-1 page_alloc.shuffle=1"

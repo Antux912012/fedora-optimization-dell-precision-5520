@@ -1,0 +1,10 @@
+# ==============================================================================
+# System-wide Environment Optimizations
+# Hardware: Dell Precision 5520 / XPS 15 9560
+# ==============================================================================
+
+# Increase NVIDIA OpenGL/Vulkan shader cache size to 10GB to eliminate micro-stutters
+__GL_SHADER_DISK_CACHE_SIZE=10000000000
+
+# Fix missing font glyph rendering artifacts in GTK4 / Mutter under Wayland
+COGL_ATLAS_DEFAULT_BLIT_MODE=framebuffer

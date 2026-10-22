@@ -1,0 +1,2 @@
+# Set NVMe storage I/O scheduler to 'none' for maximum IOPS and zero queueing overhead
+ACTION=="add|change", KERNEL=="nvme[0-9]*n[0-9]*", ATTR{queue/scheduler}="none"

@@ -1,0 +1,11 @@
+# Allow users in 'wheel' group (Fedora/RHEL/Arch) or 'sudo' group (Debian/Ubuntu)
+# to write to Intel P-State, CPU EPP, and PCIe ASPM sysfs attributes without sudo/pkexec.
+
+# Intel P-State CPU Turbo Boost disable switch
+SUBSYSTEM=="cpu", ATTR{intel_pstate/no_turbo}=="*", GROUP="wheel", MODE="0664"
+
+# CPU Energy Performance Preference (EPP)
+SUBSYSTEM=="cpu", ATTR{cpufreq/energy_performance_preference}=="*", GROUP="wheel", MODE="0664"
+
+# PCIe Active State Power Management (ASPM) policy
+SUBSYSTEM=="module", ATTR{parameters/policy}=="*", GROUP="wheel", MODE="0664"
